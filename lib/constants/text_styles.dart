@@ -14,8 +14,7 @@ class TextStyles {
 
   static TextStyle get menu_item => TextStyle(
         fontFamily: Fonts.product,
-        fontSize: 12.0, //12,.0
-        letterSpacing: 1.0,
+        fontSize: 16.0, //12,.0
         color: Color(0xFF45405B),
       );
 

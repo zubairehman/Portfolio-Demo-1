@@ -12,108 +12,232 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Color(0xFFF7F8FA),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: (ScreenUtil.getInstance().setWidth(108))), //144
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: _buildAppBar(context),
-          drawer: _buildDrawer(context),
-          body: LayoutBuilder(builder: (context, constraints) {
-            return _buildBody(context, constraints);
-          }),
-        ),
+      color: Color(0xFF1a1a1a),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+//          appBar: _buildAppBar(context),
+//          drawer: _buildDrawer(context),
+        body: LayoutBuilder(builder: (context, constraints) {
+          return Stack(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  _buildVerticalDivider(),
+                  _buildVerticalDivider(),
+                  _buildVerticalDivider(),
+                  _buildVerticalDivider(),
+                  _buildVerticalDivider(),
+                ],
+              ),
+              _buildDesign(),
+              _buildAppBar(context),
+              _buildBody(context, constraints),
+            ],
+          );
+        }),
       ),
     );
   }
 
   //AppBar Methods:-------------------------------------------------------------
   Widget _buildAppBar(BuildContext context) {
-    return AppBar(
-      titleSpacing: 0.0,
-      title: _buildTitle(),
-      backgroundColor: Colors.transparent,
-      elevation: 0.0,
-      actions:
-          !ResponsiveWidget.isSmallScreen(context) ? _buildActions() : null,
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: (ScreenUtil.getInstance().setWidth(40)),
+        vertical: (ScreenUtil.getInstance().setWidth(20)),
+      ),
+      child: AppBar(
+        titleSpacing: 0.0,
+        title: _buildTitle(),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+//      actions:
+//          !ResponsiveWidget.isSmallScreen(context) ? _buildActions() : null,
+      ),
     );
   }
 
   Widget _buildTitle() {
-    return RichText(
-      text: TextSpan(
-        // Note: Styles for TextSpans must be explicitly defined.
-        // Child text spans will inherit styles from parent
-        style: TextStyle(
-          fontSize: 14.0,
-          color: Colors.black,
-        ),
-        children: <TextSpan>[
-          TextSpan(
-            text: Strings.portfoli,
-            style: TextStyles.logo,
-          ),
-          TextSpan(
-            text: Strings.o,
-            style: TextStyles.logo.copyWith(
-              color: Color(0xFF50AFC0),
-            ),
-          ),
-        ],
+    return Row(
+      children: <Widget>[
+        _buildPortfolio(),
+        SizedBox(width: (ScreenUtil.getInstance().setWidth(300))),
+        _buildCookies(),
+      ],
+    );
+  }
+
+  Widget _buildPortfolio() {
+    return Text(
+      Strings.portfolio,
+      style: TextStyles.logo.copyWith(
+        fontFamily: 'AquateScript',
+        color: Colors.white,
       ),
     );
   }
 
-  List<Widget> _buildActions() {
-    return <Widget>[
-      MaterialButton(
-        child: Text(
-          Strings.menu_home,
-          style: TextStyles.menu_item.copyWith(
-            color: Color(0xFF50AFC0),
+  Widget _buildCookies() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Image.network(
+          Assets.cookies,
+          height: ScreenUtil.getInstance().setWidth(15.0),
+          color: Colors.white, //480.0
+        ),
+        SizedBox(width: 12.0),
+        RichText(
+          text: TextSpan(
+            // Note: Styles for TextSpans must be explicitly defined.
+            // Child text spans will inherit styles from parent
+            style: TextStyle(
+              fontSize: 14.0,
+              color: Colors.black,
+            ),
+            children: <TextSpan>[
+              TextSpan(
+                text: Strings.this_web,
+                style: TextStyles.logo.copyWith(
+                    fontFamily: 'Inconsolata',
+                    color: Colors.grey,
+                    fontSize: 12.0),
+              ),
+              TextSpan(
+                text: Strings.cookies,
+                style: TextStyles.logo.copyWith(
+                    fontFamily: 'Inconsolata',
+                    color: Colors.white,
+                    decoration: TextDecoration.lineThrough,
+                    fontSize: 12.0),
+              ),
+            ],
           ),
-        ),
-        onPressed: () {},
-      ),
-      MaterialButton(
-        child: Text(
-          Strings.menu_about,
-          style: TextStyles.menu_item,
-        ),
-        onPressed: () {},
-      ),
-      MaterialButton(
-        child: Text(
-          Strings.menu_contact,
-          style: TextStyles.menu_item,
-        ),
-        onPressed: () {},
-      ),
-    ];
+        )
+      ],
+    );
   }
 
-  Widget _buildDrawer(BuildContext context) {
-    return ResponsiveWidget.isSmallScreen(context)
-        ? Drawer(
-            child: ListView(
-              padding: const EdgeInsets.all(20),
-              children: _buildActions(),
-            ),
-          )
-        : null;
+  Widget _buildVerticalDivider() {
+    return Container(
+      width: 2,
+      height: double.maxFinite,
+      color: Colors.black26,
+      child: VerticalDivider(
+        color: Colors.black26,
+      ),
+    );
   }
+
+  Widget _buildDesign() {
+    return Center(
+      child: Text(
+        'DES_\nIGN',
+        style: TextStyle(
+          fontSize: ScreenUtil.getInstance().setWidth(330.0),
+          color: Color(0xFF1e1e1e),
+          fontFamily: 'NexaBold',
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSocialButtons() {
+    return Wrap(
+      direction: Axis.vertical,
+      children: <Widget>[
+        RotatedBox(
+          quarterTurns: 3,
+          child: MaterialButton(
+            child: Text(
+              Strings.menu_medium,
+              style: TextStyles.menu_item.copyWith(
+                fontFamily: 'Inconsolata',
+                color: Colors.white,
+              ),
+            ),
+            onPressed: () {},
+          ),
+        ),
+        RotatedBox(
+          quarterTurns: 3,
+          child: MaterialButton(
+            child: Text(
+              Strings.menu_github,
+              style: TextStyles.menu_item
+                  .copyWith(fontFamily: 'Inconsolata', color: Colors.white),
+            ),
+            onPressed: () {},
+          ),
+        ),
+        RotatedBox(
+          quarterTurns: 3,
+          child: MaterialButton(
+            child: Text(
+              Strings.menu_contact,
+              style: TextStyles.menu_item.copyWith(
+                fontFamily: 'Inconsolata',
+                color: Colors.white,
+              ),
+            ),
+            onPressed: () {},
+          ),
+        ),
+        RotatedBox(
+          quarterTurns: 3,
+          child: MaterialButton(
+            child: Text(
+              Strings.menu_about,
+              style: TextStyles.menu_item.copyWith(
+                fontFamily: 'Inconsolata',
+                color: Colors.white,
+              ),
+            ),
+            onPressed: () {},
+          ),
+        ),
+        RotatedBox(
+          quarterTurns: 3,
+          child: MaterialButton(
+            child: Text(
+              Strings.menu_home,
+              style: TextStyles.menu_item.copyWith(
+                color: Colors.white,
+                fontFamily: 'Inconsolata',
+              ),
+            ),
+            onPressed: () {},
+          ),
+        ),
+      ],
+    );
+  }
+
+//  Widget _buildDrawer(BuildContext context) {
+//    return ResponsiveWidget.isSmallScreen(context)
+//        ? Drawer(
+//            child: ListView(
+//              padding: const EdgeInsets.all(20),
+//              children: _buildActions(),
+//            ),
+//          )
+//        : null;
+//  }
 
   //Screen Methods:-------------------------------------------------------------
   Widget _buildBody(BuildContext context, BoxConstraints constraints) {
     return SingleChildScrollView(
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-            minWidth: constraints.maxWidth, minHeight: constraints.maxHeight),
-        child: ResponsiveWidget(
-          largeScreen: _buildLargeScreen(context),
-          mediumScreen: _buildMediumScreen(context),
-          smallScreen: _buildSmallScreen(context),
+      child: Padding(
+        padding: EdgeInsets.only(left: (ScreenUtil.getInstance().setWidth(40))),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+              minWidth: constraints.maxWidth, minHeight: constraints.maxHeight),
+          child: ResponsiveWidget(
+            largeScreen: _buildLargeScreen(context),
+            mediumScreen: _buildMediumScreen(context),
+            smallScreen: _buildSmallScreen(context),
+          ),
         ),
       ),
     );
@@ -130,7 +254,7 @@ class HomePage extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Expanded(flex: 1, child: _buildContent(context)),
-                _buildIllustration(),
+                _buildSocialButtons()
               ],
             ),
           ),
@@ -187,58 +311,38 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildContent(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
       children: <Widget>[
-        SizedBox(height: ResponsiveWidget.isSmallScreen(context) ? 24.0 : 0.0),
-        _buildAboutMe(context),
-        SizedBox(height: 4.0),
-        _buildHeadline(context),
-        SizedBox(height: ResponsiveWidget.isSmallScreen(context) ? 12.0 : 24.0),
-        _buildSummary(),
-        SizedBox(height: ResponsiveWidget.isSmallScreen(context) ? 24.0 : 48.0),
-        ResponsiveWidget.isSmallScreen(context)
-            ? Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  _buildEducation(),
-                  SizedBox(height: 24.0),
-                  _buildSkills(context),
-                ],
-              )
-            : _buildSkillsAndEducation(context)
+        Expanded(flex: 1, child: _buildAboutMe()),
+        Expanded(flex: 1, child: _buildHello()),
       ],
     );
   }
 
-  Widget _buildAboutMe(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        // Note: Styles for TextSpans must be explicitly defined.
-        // Child text spans will inherit styles from parent
+  Widget _buildAboutMe() {
+    return RotatedBox(
+      quarterTurns: 3,
+      child: Text(
+        'Mobile App Developer\nbased in Islamabad\nPakistan.',
         style: TextStyle(
-          fontSize: 14.0,
-          color: Colors.black,
+          color: Colors.grey,
+          fontFamily: 'Inconsolata',
+          fontSize: 18.0,
+          height: 1.5,
+          letterSpacing: 1.5,
         ),
-        children: <TextSpan>[
-          TextSpan(
-            text: Strings.about,
-            style: TextStyles.heading.copyWith(
-              fontFamily: Fonts.nexa_light,
-              fontSize: ResponsiveWidget.isSmallScreen(context) ? 36 : 45.0,
-            ),
-          ),
-          TextSpan(
-            text: Strings.me,
-            style: TextStyles.heading.copyWith(
-              color: Color(0xFF50AFC0),
-              fontSize: ResponsiveWidget.isSmallScreen(context) ? 36 : 45.0,
-            ),
-          ),
-        ],
+      ),
+    );
+  }
+
+  Widget _buildHello() {
+    return Text(
+      'Hello\nI am\nZubair',
+      style: TextStyle(
+        fontSize: 160.0,
+        color: Colors.white,
+        fontFamily: 'ProductSans',
+        fontWeight: FontWeight.w700,
       ),
     );
   }

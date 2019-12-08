@@ -4,8 +4,9 @@ class Strings {
   static const String about_me = 'About Me';
   static const String about = 'About';
   static const String me = ' Me';
-  static const String portfoli = 'Portfoli';
-  static const String o = 'o';
+  static const String portfolio = 'Portfolio';
+  static const String this_web = 'Yes this website uses f***ing ';
+  static const String cookies = 'cookies';
   static const String headline = 'I\'am Zubair Rehman, Mobile App Developer from Islamabad, Pakistan';
   static const String summary = 'Focused professional having excellent technical and communication skills, and offering 6 years of experience in Computer industry. Proficient at designing and formulating test automation frameworks, writing code in various languages, feature development and implementation. Specialize in thinking outside the box to find unique solutions to difficult engineering problems.';
   static const String experience = 'Experience';
@@ -13,8 +14,10 @@ class Strings {
   static const String rights_reserved = '© 2019 IOTECK SOLUTIONS. ALL RIGHTS RESERVED.';
 
   // menu items
-  static const String menu_home = 'Home';
-  static const String menu_about = 'About';
-  static const String menu_contact = 'Contact';
+  static const String menu_home = 'FACEBOOK';
+  static const String menu_about = 'TWITTER';
+  static const String menu_contact = 'LINKEDIN';
+  static const String menu_medium = 'MEDIUM';
+  static const String menu_github = 'GITHUB';
 
 }

@@ -38,5 +38,21 @@
       }
     ],
     "family": "NexaLight"
+  },
+  {
+    "fonts": [
+      {
+        "asset": "fonts/AquateScript.ttf"
+      }
+    ],
+    "family": "AquateScript"
+  },
+  {
+    "fonts": [
+      {
+        "asset": "fonts/Inconsolata-Regular.ttf"
+      }
+    ],
+    "family": "Inconsolata"
   }
 ]
