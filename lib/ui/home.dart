@@ -17,40 +17,43 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.transparent,
 //          appBar: _buildAppBar(context),
 //          drawer: _buildDrawer(context),
-        body: LayoutBuilder(builder: (context, constraints) {
-          return Stack(
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  _buildVerticalDivider(),
-                  _buildVerticalDivider(),
-                  _buildVerticalDivider(),
-                  _buildVerticalDivider(),
-                  _buildVerticalDivider(),
-                ],
-              ),
-              _buildDesign(),
-              Positioned(
-                right: 280.0,
-                top: 150.0,
-                child: _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
-              ),
-              _buildAppBar(context),
-              _buildBody(context, constraints),
-              Positioned(
-                left: 400.0,
-                top: 220.0,
-                child: _buildCircle(40, 40, 15.0, 4.0, Color(0xFF00bcd5)),
-              ),
-              Positioned(
-                left: 550.0,
-                bottom: 80.0,
-                child: _buildCircle(50, 50, 20.0, 4.0, Color(0xFFb2ebf2)),
-              ),
-            ],
-          );
-        }),
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            return Stack(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    _buildVerticalDivider(),
+                    _buildVerticalDivider(),
+                    _buildVerticalDivider(),
+                    _buildVerticalDivider(),
+                    _buildVerticalDivider(),
+                  ],
+                ),
+                _buildDesign(),
+                Positioned(
+                  right: 280.0,
+                  top: 150.0,
+                  child: _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
+                ),
+                _buildAppBar(context),
+                _buildBody(context, constraints),
+                Positioned(
+                  left: 400.0,
+                  top: 220.0,
+                  child: _buildCircle(40, 40, 15.0, 4.0, Color(0xFF00bcd5)),
+                ),
+                Positioned(
+                  left: 550.0,
+                  bottom: 80.0,
+                  child: _buildCircle(50, 50, 20.0, 4.0, Color(0xFFb2ebf2)),
+                ),
+                _buildMadeWith(),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -273,7 +276,6 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          _buildFooter(context)
         ],
       ),
     );
@@ -331,10 +333,18 @@ class HomePage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        SizedBox(width: 30.0),
-        _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
-        SizedBox(width: 40.0),
-        _buildAboutMe(),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 120.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              SizedBox(width: 30.0),
+              _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
+              SizedBox(width: 40.0),
+              _buildAboutMe(),
+            ],
+          ),
+        ),
         SizedBox(width: 530.0),
         _buildHello(),
       ],
@@ -411,6 +421,55 @@ class HomePage extends StatelessWidget {
           decoration: BoxDecoration(
             color: Color(0XFF1a1a1a),
             borderRadius: BorderRadius.circular(innerRadius),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMadeWith() {
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: 50.0,
+        left: (ScreenUtil.getInstance().setWidth(40)),
+      ),
+      child: Align(
+        alignment: Alignment.bottomLeft,
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 8.0),
+          color: Color(0xFF1e1e1e),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              RotatedBox(
+                quarterTurns: 3,
+                child: Text(
+                  '❤',
+                  style: TextStyle(
+                    color: Colors.grey[300],
+                    fontFamily: 'Inconsolata',
+                    fontSize: 18.0,
+                    height: 1.5,
+                    letterSpacing: 1.5,
+                  ),
+                ),
+              ),
+              SizedBox(height: 8.0),
+              RotatedBox(
+                quarterTurns: 3,
+                child: Text(
+                  'Made with',
+                  style: TextStyle(
+                    color: Colors.grey[300],
+                    fontFamily: 'Inconsolata',
+                    fontSize: 18.0,
+                    decoration: TextDecoration.lineThrough,
+                    height: 1.5,
+                    letterSpacing: 1.5,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
