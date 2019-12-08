@@ -1,12 +1,12 @@
+import 'dart:html' as html;
+
 import 'package:flutter_web/material.dart';
 import 'package:portfolio/constants/assets.dart';
-import 'package:portfolio/constants/fonts.dart';
 import 'package:portfolio/constants/strings.dart';
 import 'package:portfolio/constants/text_styles.dart';
 import 'package:portfolio/models/education.dart';
 import 'package:portfolio/utils/screen/screen_utils.dart';
 import 'package:portfolio/widgets/responsive_widget.dart';
-import 'dart:html' as html;
 
 class HomePage extends StatelessWidget {
   @override
@@ -31,8 +31,23 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               _buildDesign(),
+              Positioned(
+                right: 280.0,
+                top: 150.0,
+                child: _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
+              ),
               _buildAppBar(context),
               _buildBody(context, constraints),
+              Positioned(
+                left: 400.0,
+                top: 220.0,
+                child: _buildCircle(40, 40, 15.0, 4.0, Color(0xFF00bcd5)),
+              ),
+              Positioned(
+                left: 550.0,
+                bottom: 80.0,
+                child: _buildCircle(50, 50, 20.0, 4.0, Color(0xFFb2ebf2)),
+              ),
             ],
           );
         }),
@@ -312,9 +327,16 @@ class HomePage extends StatelessWidget {
 
   Widget _buildContent(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Expanded(flex: 1, child: _buildAboutMe()),
-        Expanded(flex: 1, child: _buildHello()),
+        SizedBox(width: 30.0),
+        _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
+        SizedBox(width: 40.0),
+        _buildAboutMe(),
+        SizedBox(width: 530.0),
+        _buildHello(),
       ],
     );
   }
@@ -325,7 +347,7 @@ class HomePage extends StatelessWidget {
       child: Text(
         'Mobile App Developer\nbased in Islamabad\nPakistan.',
         style: TextStyle(
-          color: Colors.grey,
+          color: Colors.grey[300],
           fontFamily: 'Inconsolata',
           fontSize: 18.0,
           height: 1.5,
@@ -336,13 +358,61 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildHello() {
-    return Text(
-      'Hello\nI am\nZubair',
-      style: TextStyle(
-        fontSize: 160.0,
-        color: Colors.white,
-        fontFamily: 'ProductSans',
-        fontWeight: FontWeight.w700,
+    return RichText(
+      text: TextSpan(
+        text: 'Hello',
+        style: TextStyle(
+          fontSize: 160.0,
+          color: Colors.white,
+          letterSpacing: 1.5,
+          height: 1.0,
+          fontFamily: 'ProductSans',
+          fontWeight: FontWeight.w700,
+        ),
+        children: <TextSpan>[
+          TextSpan(
+            text: '.',
+            style: TextStyle(
+              fontSize: 160.0,
+              color: Color(0xFFff5353),
+              height: 1.0,
+              fontFamily: 'ProductSans',
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          TextSpan(
+            text: '\nI am\nZubair',
+            style: TextStyle(
+              fontSize: 160.0,
+              color: Colors.white,
+              height: 1.0,
+              fontFamily: 'ProductSans',
+              fontWeight: FontWeight.w700,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCircle(double width, double height, double outerRadius,
+      double innerRadius, Color color) {
+    return Container(
+      height: height,
+      width: width,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(outerRadius),
+      ),
+      child: Center(
+        child: Container(
+          height: height * 0.45,
+          width: width * 0.45,
+          decoration: BoxDecoration(
+            color: Color(0XFF1a1a1a),
+            borderRadius: BorderRadius.circular(innerRadius),
+          ),
+        ),
       ),
     );
   }
