@@ -8,7 +8,12 @@ import 'package:portfolio/models/education.dart';
 import 'package:portfolio/utils/screen/screen_utils.dart';
 import 'package:portfolio/widgets/responsive_widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -31,22 +36,24 @@ class HomePage extends StatelessWidget {
                     _buildVerticalDivider(),
                   ],
                 ),
-                _buildDesign(),
+                ResponsiveWidget.isLargeScreen(context)
+                    ? _buildDesign()
+                    : SizedBox.shrink(),
                 Positioned(
-                  right: 280.0,
-                  top: 150.0,
+                  right: MediaQuery.of(context).size.width * 0.15,
+                  top: MediaQuery.of(context).size.width * 0.11,
                   child: _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
                 ),
                 _buildAppBar(context),
                 _buildBody(context, constraints),
                 Positioned(
-                  left: 400.0,
-                  top: 220.0,
+                  left: MediaQuery.of(context).size.width * 0.30,
+                  top: MediaQuery.of(context).size.width * 0.15,
                   child: _buildCircle(40, 40, 15.0, 4.0, Color(0xFF00bcd5)),
                 ),
                 Positioned(
-                  left: 550.0,
-                  bottom: 80.0,
+                  left: MediaQuery.of(context).size.width * 0.37,
+                  bottom: MediaQuery.of(context).size.width * 0.05,
                   child: _buildCircle(50, 50, 20.0, 4.0, Color(0xFFb2ebf2)),
                 ),
                 _buildMadeWith(),
@@ -58,7 +65,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  //AppBar Methods:-------------------------------------------------------------
   Widget _buildAppBar(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -80,7 +86,11 @@ class HomePage extends StatelessWidget {
     return Row(
       children: <Widget>[
         _buildPortfolio(),
-        SizedBox(width: (ScreenUtil.getInstance().setWidth(300))),
+        SizedBox(
+          width: ResponsiveWidget.isSmallScreen(context)
+              ? MediaQuery.of(context).size.width * 0.10
+              : MediaQuery.of(context).size.width * 0.25,
+        ),
         _buildCookies(),
       ],
     );
@@ -102,7 +112,7 @@ class HomePage extends StatelessWidget {
       children: <Widget>[
         Image.network(
           Assets.cookies,
-          height: ScreenUtil.getInstance().setWidth(15.0),
+          height: 20.0,
           color: Colors.white, //480.0
         ),
         SizedBox(width: 12.0),
@@ -153,7 +163,7 @@ class HomePage extends StatelessWidget {
       child: Text(
         'DES_\nIGN',
         style: TextStyle(
-          fontSize: ScreenUtil.getInstance().setWidth(330.0),
+          fontSize: MediaQuery.of(context).size.width * 0.27,
           color: Color(0xFF1e1e1e),
           fontFamily: 'NexaBold',
         ),
@@ -232,30 +242,15 @@ class HomePage extends StatelessWidget {
     );
   }
 
-//  Widget _buildDrawer(BuildContext context) {
-//    return ResponsiveWidget.isSmallScreen(context)
-//        ? Drawer(
-//            child: ListView(
-//              padding: const EdgeInsets.all(20),
-//              children: _buildActions(),
-//            ),
-//          )
-//        : null;
-//  }
-
-  //Screen Methods:-------------------------------------------------------------
   Widget _buildBody(BuildContext context, BoxConstraints constraints) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.only(left: (ScreenUtil.getInstance().setWidth(40))),
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-              minWidth: constraints.maxWidth, minHeight: constraints.maxHeight),
-          child: ResponsiveWidget(
-            largeScreen: _buildLargeScreen(context),
-            mediumScreen: _buildMediumScreen(context),
-            smallScreen: _buildSmallScreen(context),
-          ),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+            minWidth: constraints.maxWidth, minHeight: constraints.maxHeight),
+        child: ResponsiveWidget(
+          largeScreen: _buildLargeScreen(context),
+          mediumScreen: _buildMediumScreen(context),
+          smallScreen: _buildSmallScreen(context),
         ),
       ),
     );
@@ -271,11 +266,15 @@ class HomePage extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Expanded(flex: 1, child: _buildContent(context)),
+                Expanded(flex: 1, child: _buildLargeScreenContent(context)),
                 _buildSocialButtons()
               ],
             ),
           ),
+          Text(
+            'Large',
+            style: TextStyle(color: Colors.white),
+          )
         ],
       ),
     );
@@ -291,11 +290,15 @@ class HomePage extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Expanded(flex: 1, child: _buildContent(context)),
+                Expanded(flex: 1, child: _buildMediumScreenContent(context)),
+                _buildSocialButtons()
               ],
             ),
           ),
-          _buildFooter(context)
+          Text(
+            'Medium',
+            style: TextStyle(color: Colors.white),
+          )
         ],
       ),
     );
@@ -306,9 +309,12 @@ class HomePage extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Expanded(flex: 1, child: _buildContent(context)),
+          Expanded(flex: 1, child: _buildLargeScreenContent(context)),
           Divider(),
-          _buildCopyRightText(context),
+          Text(
+            'Small',
+            style: TextStyle(color: Colors.white),
+          ),
           SizedBox(
               height: ResponsiveWidget.isSmallScreen(context) ? 12.0 : 0.0),
           _buildSocialIcons(),
@@ -319,7 +325,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // Body Methods:--------------------------------------------------------------
   Widget _buildIllustration() {
     return Image.network(
       Assets.programmer3,
@@ -327,11 +332,10 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildContent(BuildContext context) {
+  Widget _buildLargeScreenContent(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisAlignment: MainAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(bottom: 120.0),
@@ -341,25 +345,45 @@ class HomePage extends StatelessWidget {
               SizedBox(width: 30.0),
               _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
               SizedBox(width: 40.0),
-              _buildAboutMe(),
+              _buildAboutMe(fontSize: MediaQuery.of(context).size.width * 0.015),
             ],
           ),
         ),
-        SizedBox(width: 530.0),
-        _buildHello(),
+        SizedBox(width: MediaQuery.of(context).size.width * 0.30),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 50.0),
+          child: _buildHello(fontSize: MediaQuery.of(context).size.width * 0.12),
+        ),
       ],
     );
   }
 
-  Widget _buildAboutMe() {
+  Widget _buildMediumScreenContent(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: MediaQuery.of(context).size.height * 0.20,
+        left: MediaQuery.of(context).size.height * 0.10,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          _buildHello(fontSize: MediaQuery.of(context).size.width * 0.23),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+          _buildAboutMe(quarterTurns: 4, fontSize: MediaQuery.of(context).size.width * 0.035),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAboutMe({int quarterTurns = 3, double fontSize}) {
     return RotatedBox(
-      quarterTurns: 3,
+      quarterTurns: quarterTurns,
       child: Text(
         'Mobile App Developer\nbased in Islamabad\nPakistan.',
         style: TextStyle(
-          color: Colors.grey[300],
+          color: Colors.grey[400],
           fontFamily: 'Inconsolata',
-          fontSize: 18.0,
+          fontSize: fontSize,
           height: 1.5,
           letterSpacing: 1.5,
         ),
@@ -367,12 +391,12 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildHello() {
+  Widget _buildHello({double fontSize}) {
     return RichText(
       text: TextSpan(
         text: 'Hello',
         style: TextStyle(
-          fontSize: 160.0,
+          fontSize: fontSize,
           color: Colors.white,
           letterSpacing: 1.5,
           height: 1.0,
@@ -383,7 +407,7 @@ class HomePage extends StatelessWidget {
           TextSpan(
             text: '.',
             style: TextStyle(
-              fontSize: 160.0,
+              fontSize: fontSize,
               color: Color(0xFFff5353),
               height: 1.0,
               fontFamily: 'ProductSans',
@@ -393,7 +417,7 @@ class HomePage extends StatelessWidget {
           TextSpan(
             text: '\nI am\nZubair',
             style: TextStyle(
-              fontSize: 160.0,
+              fontSize: fontSize,
               color: Colors.white,
               height: 1.0,
               fontFamily: 'ProductSans',
@@ -512,7 +536,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // Skills Methods:------------------------------------------------------------
   final skills = [
     'Java',
     'Kotlin',
@@ -565,7 +588,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // Education Methods:---------------------------------------------------------
   final educationList = [
     Education(
       'Apr 2018',
@@ -645,7 +667,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // Footer Methods:------------------------------------------------------------
   Widget _buildFooter(BuildContext context) {
     return Column(
       children: <Widget>[
