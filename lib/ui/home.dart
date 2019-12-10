@@ -6,6 +6,7 @@ import 'package:portfolio/constants/assets.dart';
 import 'package:portfolio/constants/strings.dart';
 import 'package:portfolio/constants/text_styles.dart';
 import 'package:portfolio/models/education.dart';
+import 'package:portfolio/utils/hover/custom_cursor_widget.dart';
 import 'package:portfolio/utils/screen/screen_utils.dart';
 import 'package:portfolio/widgets/responsive_widget.dart';
 
@@ -15,6 +16,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // boolean to hold hover
+  bool _hovering = false;
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -186,80 +190,100 @@ class _HomePageState extends State<HomePage> {
     return Wrap(
       direction: axis,
       children: <Widget>[
-        RotatedBox(
-          quarterTurns: quarterTurns,
-          child: MaterialButton(
-            child: Text(
-              Strings.menu_medium,
-              style: TextStyles.menu_item.copyWith(
-                fontFamily: 'Inconsolata',
-                color: Colors.white,
+        CustomCursor(
+          cursorStyle: CustomCursor.pointer,
+          child: RotatedBox(
+            quarterTurns: quarterTurns,
+            child: MaterialButton(
+              hoverColor: Color(0xFF0098a6),
+              child: Text(
+                Strings.menu_medium,
+                style: TextStyles.menu_item.copyWith(
+                  fontFamily: 'Inconsolata',
+                  color: Colors.white,
+                ),
               ),
+              onPressed: () {
+                html.window
+                    .open("https://medium.com/@zubairehman.work", "Medium");
+              },
             ),
-            onPressed: () {
-              html.window
-                  .open("https://medium.com/@zubairehman.work", "Medium");
-            },
           ),
         ),
-        RotatedBox(
-          quarterTurns: quarterTurns,
-          child: MaterialButton(
-            child: Text(
-              Strings.menu_github,
-              style: TextStyles.menu_item
-                  .copyWith(fontFamily: 'Inconsolata', color: Colors.white),
+        CustomCursor(
+          cursorStyle: CustomCursor.pointer,
+          child: RotatedBox(
+            quarterTurns: quarterTurns,
+            child: MaterialButton(
+              hoverColor: Color(0xFF0098a6),
+              child: Text(
+                Strings.menu_github,
+                style: TextStyles.menu_item
+                    .copyWith(fontFamily: 'Inconsolata', color: Colors.white),
+              ),
+              onPressed: () {
+                html.window.open("https://github.com/zubairehman", "Github");
+              },
             ),
-            onPressed: () {
-              html.window.open("https://github.com/zubairehman", "Github");
-            },
           ),
         ),
-        RotatedBox(
-          quarterTurns: quarterTurns,
-          child: MaterialButton(
-            child: Text(
-              Strings.menu_linked_in,
-              style: TextStyles.menu_item.copyWith(
-                fontFamily: 'Inconsolata',
-                color: Colors.white,
+        CustomCursor(
+          cursorStyle: CustomCursor.pointer,
+          child: RotatedBox(
+            quarterTurns: quarterTurns,
+            child: MaterialButton(
+              hoverColor: Color(0xFF0098a6),
+              child: Text(
+                Strings.menu_linked_in,
+                style: TextStyles.menu_item.copyWith(
+                  fontFamily: 'Inconsolata',
+                  color: Colors.white,
+                ),
               ),
+              onPressed: () {
+                html.window.open(
+                    "https://www.linkedin.com/in/zubairehman/", "LinkedIn");
+              },
             ),
-            onPressed: () {
-              html.window
-                  .open("https://www.linkedin.com/in/zubairehman/", "LinkedIn");
-            },
           ),
         ),
-        RotatedBox(
-          quarterTurns: quarterTurns,
-          child: MaterialButton(
-            child: Text(
-              Strings.menu_twitter,
-              style: TextStyles.menu_item.copyWith(
-                fontFamily: 'Inconsolata',
-                color: Colors.white,
+        CustomCursor(
+          cursorStyle: CustomCursor.pointer,
+          child: RotatedBox(
+            quarterTurns: quarterTurns,
+            child: MaterialButton(
+              hoverColor: Color(0xFF0098a6),
+              child: Text(
+                Strings.menu_twitter,
+                style: TextStyles.menu_item.copyWith(
+                  fontFamily: 'Inconsolata',
+                  color: Colors.white,
+                ),
               ),
+              onPressed: () {
+                html.window.open("https://twitter.com/zubair340", "Twitter");
+              },
             ),
-            onPressed: () {
-              html.window.open("https://twitter.com/zubair340", "Twitter");
-            },
           ),
         ),
-        RotatedBox(
-          quarterTurns: quarterTurns,
-          child: MaterialButton(
-            child: Text(
-              Strings.menu_facebook,
-              style: TextStyles.menu_item.copyWith(
-                color: Colors.white,
-                fontFamily: 'Inconsolata',
+        CustomCursor(
+          cursorStyle: CustomCursor.pointer,
+          child: RotatedBox(
+            quarterTurns: quarterTurns,
+            child: MaterialButton(
+              hoverColor: Color(0xFF0098a6),
+              child: Text(
+                Strings.menu_facebook,
+                style: TextStyles.menu_item.copyWith(
+                  color: Colors.white,
+                  fontFamily: 'Inconsolata',
+                ),
               ),
+              onPressed: () {
+                html.window
+                    .open("https://www.facebook.com/zubair340", "Facebook");
+              },
             ),
-            onPressed: () {
-              html.window
-                  .open("https://www.facebook.com/zubair340", "Facebook");
-            },
           ),
         ),
       ],
@@ -825,5 +849,13 @@ class _HomePageState extends State<HomePage> {
         ),
       ],
     );
+  }
+
+  // general methods:-----------------------------------------------------------
+  void _mouseEnter(bool hover) {
+    print('mouse event: $hover');
+    setState(() {
+      _hovering = hover;
+    });
   }
 }

@@ -21,6 +21,10 @@ dev_dependencies:
   # The Font Awesome Icon pack available as Flutter Icons.
   font_awesome: any
 
+  # Universal
+  universal_html: ^1.1.6
+
+
 #  font_awesome_flutter: ^8.5.0
 
 # flutter_web packages are not published to pub.dartlang.org

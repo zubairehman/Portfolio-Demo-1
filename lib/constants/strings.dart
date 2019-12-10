@@ -17,7 +17,7 @@ class Strings {
   static const String menu_facebook = 'FACEBOOK';
   static const String menu_twitter = 'TWITTER';
   static const String menu_linked_in = 'LINKEDIN';
-  static const String menu_medium = 'MEDIUM';
+  static const String menu_medium = ' MEDIUM ';
   static const String menu_github = 'GITHUB';
 
 }

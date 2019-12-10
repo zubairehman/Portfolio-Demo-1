@@ -359,6 +359,13 @@
             </list>
           </value>
         </entry>
+        <entry key="petitparser">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/petitparser-2.4.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="pool">
           <value>
             <list>
@@ -485,6 +492,20 @@
             </list>
           </value>
         </entry>
+        <entry key="universal_html">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/universal_html-1.1.6/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="universal_io">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/universal_io-0.8.4/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="vector_math">
           <value>
             <list>
@@ -506,10 +527,24 @@
             </list>
           </value>
         </entry>
+        <entry key="xml">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/xml-3.5.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="yaml">
           <value>
             <list>
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/yaml-2.2.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="zone_local">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/zone_local-0.1.1/lib" />
             </list>
           </value>
         </entry>
@@ -567,6 +602,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/package_resolver-1.0.10/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path-1.6.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/pedantic-1.9.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/petitparser-2.4.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/pool-1.4.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/protobuf-1.0.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/pub_semver-1.4.2/lib" />
@@ -585,10 +621,14 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/timing-0.1.1+2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/typed_data-1.1.6/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/universal_html-1.1.6/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/universal_io-0.8.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/vector_math-2.0.8/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/watcher-0.9.7+13/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/web_socket_channel-1.1.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/xml-3.5.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/yaml-2.2.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/zone_local-0.1.1/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
