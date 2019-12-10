@@ -1,5 +1,6 @@
 import 'dart:html' as html;
 
+import 'package:flutter_web/cupertino.dart';
 import 'package:flutter_web/material.dart';
 import 'package:portfolio/constants/assets.dart';
 import 'package:portfolio/constants/strings.dart';
@@ -56,7 +57,11 @@ class _HomePageState extends State<HomePage> {
                   bottom: MediaQuery.of(context).size.width * 0.05,
                   child: _buildCircle(50, 50, 20.0, 4.0, Color(0xFFb2ebf2)),
                 ),
-                _buildMadeWith(),
+                _buildMadeWith(
+                  alignment: ResponsiveWidget.isSmallScreen(context)
+                      ? Alignment.topRight
+                      : Alignment.bottomLeft,
+                ),
               ],
             );
           },
@@ -89,9 +94,13 @@ class _HomePageState extends State<HomePage> {
         SizedBox(
           width: ResponsiveWidget.isSmallScreen(context)
               ? MediaQuery.of(context).size.width * 0.10
-              : MediaQuery.of(context).size.width * 0.25,
+              : ResponsiveWidget.isMediumScreen(context)
+                  ? MediaQuery.of(context).size.width * 0.05
+                  : MediaQuery.of(context).size.width * 0.20,
         ),
-        _buildCookies(),
+        ResponsiveWidget.isSmallScreen(context)
+            ? SizedBox.shrink()
+            : _buildCookies(),
       ],
     );
   }
@@ -108,6 +117,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildCookies() {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Image.network(
@@ -171,12 +181,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildSocialButtons() {
+  Widget _buildSocialButtons(
+      {int quarterTurns = 3, Axis axis = Axis.vertical}) {
     return Wrap(
-      direction: Axis.vertical,
+      direction: axis,
       children: <Widget>[
         RotatedBox(
-          quarterTurns: 3,
+          quarterTurns: quarterTurns,
           child: MaterialButton(
             child: Text(
               Strings.menu_medium,
@@ -185,57 +196,70 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.white,
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              html.window
+                  .open("https://medium.com/@zubairehman.work", "Medium");
+            },
           ),
         ),
         RotatedBox(
-          quarterTurns: 3,
+          quarterTurns: quarterTurns,
           child: MaterialButton(
             child: Text(
               Strings.menu_github,
               style: TextStyles.menu_item
                   .copyWith(fontFamily: 'Inconsolata', color: Colors.white),
             ),
-            onPressed: () {},
+            onPressed: () {
+              html.window.open("https://github.com/zubairehman", "Github");
+            },
           ),
         ),
         RotatedBox(
-          quarterTurns: 3,
+          quarterTurns: quarterTurns,
           child: MaterialButton(
             child: Text(
-              Strings.menu_contact,
+              Strings.menu_linked_in,
               style: TextStyles.menu_item.copyWith(
                 fontFamily: 'Inconsolata',
                 color: Colors.white,
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              html.window
+                  .open("https://www.linkedin.com/in/zubairehman/", "LinkedIn");
+            },
           ),
         ),
         RotatedBox(
-          quarterTurns: 3,
+          quarterTurns: quarterTurns,
           child: MaterialButton(
             child: Text(
-              Strings.menu_about,
+              Strings.menu_twitter,
               style: TextStyles.menu_item.copyWith(
                 fontFamily: 'Inconsolata',
                 color: Colors.white,
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              html.window.open("https://twitter.com/zubair340", "Twitter");
+            },
           ),
         ),
         RotatedBox(
-          quarterTurns: 3,
+          quarterTurns: quarterTurns,
           child: MaterialButton(
             child: Text(
-              Strings.menu_home,
+              Strings.menu_facebook,
               style: TextStyles.menu_item.copyWith(
                 color: Colors.white,
                 fontFamily: 'Inconsolata',
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              html.window
+                  .open("https://www.facebook.com/zubair340", "Facebook");
+            },
           ),
         ),
       ],
@@ -271,10 +295,6 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          Text(
-            'Large',
-            style: TextStyle(color: Colors.white),
-          )
         ],
       ),
     );
@@ -295,10 +315,6 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          Text(
-            'Medium',
-            style: TextStyle(color: Colors.white),
-          )
         ],
       ),
     );
@@ -308,18 +324,16 @@ class _HomePageState extends State<HomePage> {
     return IntrinsicHeight(
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Expanded(flex: 1, child: _buildLargeScreenContent(context)),
-          Divider(),
-          Text(
-            'Small',
-            style: TextStyle(color: Colors.white),
+          Expanded(
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Expanded(flex: 1, child: _buildSmallScreenContent(context)),
+              ],
+            ),
           ),
-          SizedBox(
-              height: ResponsiveWidget.isSmallScreen(context) ? 12.0 : 0.0),
-          _buildSocialIcons(),
-          SizedBox(
-              height: ResponsiveWidget.isSmallScreen(context) ? 12.0 : 0.0),
         ],
       ),
     );
@@ -345,14 +359,16 @@ class _HomePageState extends State<HomePage> {
               SizedBox(width: 30.0),
               _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
               SizedBox(width: 40.0),
-              _buildAboutMe(fontSize: MediaQuery.of(context).size.width * 0.015),
+              _buildAboutMe(
+                  fontSize: MediaQuery.of(context).size.width * 0.015),
             ],
           ),
         ),
         SizedBox(width: MediaQuery.of(context).size.width * 0.30),
         Padding(
           padding: const EdgeInsets.only(bottom: 50.0),
-          child: _buildHello(fontSize: MediaQuery.of(context).size.width * 0.12),
+          child:
+              _buildHello(fontSize: MediaQuery.of(context).size.width * 0.12),
         ),
       ],
     );
@@ -365,11 +381,50 @@ class _HomePageState extends State<HomePage> {
         left: MediaQuery.of(context).size.height * 0.10,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           _buildHello(fontSize: MediaQuery.of(context).size.width * 0.23),
           SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-          _buildAboutMe(quarterTurns: 4, fontSize: MediaQuery.of(context).size.width * 0.035),
+          _buildAboutMe(
+            quarterTurns: 4,
+            fontSize: MediaQuery.of(context).size.width * 0.035,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSmallScreenContent(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: MediaQuery.of(context).size.height * 0.25,
+//        left: MediaQuery.of(context).size.height * 0.10,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              _buildHello(fontSize: MediaQuery.of(context).size.width * 0.23),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              _buildAboutMe(
+                quarterTurns: 4,
+                fontSize: MediaQuery.of(context).size.width * 0.035,
+              ),
+            ],
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.15),
+          _buildCookies(),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.10),
+          Padding(
+            padding: EdgeInsets.only(
+              left: MediaQuery.of(context).size.height * 0.05,
+              right: MediaQuery.of(context).size.height * 0.05,
+            ),
+            child: _buildSocialButtons(quarterTurns: 4, axis: Axis.horizontal),
+          ),
         ],
       ),
     );
@@ -451,14 +506,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildMadeWith() {
+  Widget _buildMadeWith({Alignment alignment = Alignment.bottomLeft}) {
     return Padding(
       padding: EdgeInsets.only(
         bottom: 50.0,
         left: (ScreenUtil.getInstance().setWidth(40)),
       ),
       child: Align(
-        alignment: Alignment.bottomLeft,
+        alignment: alignment,
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 8.0),
           color: Color(0xFF1e1e1e),
@@ -468,7 +523,21 @@ class _HomePageState extends State<HomePage> {
               RotatedBox(
                 quarterTurns: 3,
                 child: Text(
-                  '❤',
+                  'in flutter',
+                  style: TextStyle(
+                    color: Colors.grey[300],
+                    fontFamily: 'Inconsolata',
+                    fontSize: 18.0,
+                    decoration: TextDecoration.lineThrough,
+                    height: 1.5,
+                    letterSpacing: 1.5,
+                  ),
+                ),
+              ),
+              RotatedBox(
+                quarterTurns: 3,
+                child: Text(
+                  '❤ ',
                   style: TextStyle(
                     color: Colors.grey[300],
                     fontFamily: 'Inconsolata',

@@ -14,9 +14,9 @@ class Strings {
   static const String rights_reserved = '© 2019 IOTECK SOLUTIONS. ALL RIGHTS RESERVED.';
 
   // menu items
-  static const String menu_home = 'FACEBOOK';
-  static const String menu_about = 'TWITTER';
-  static const String menu_contact = 'LINKEDIN';
+  static const String menu_facebook = 'FACEBOOK';
+  static const String menu_twitter = 'TWITTER';
+  static const String menu_linked_in = 'LINKEDIN';
   static const String menu_medium = 'MEDIUM';
   static const String menu_github = 'GITHUB';
 
