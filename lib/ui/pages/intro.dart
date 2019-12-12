@@ -33,10 +33,6 @@ class _IntroWidgetState extends State<IntroWidget> {
   Widget _buildLargeScreenContent(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Text(
-          'large',
-          style: TextStyle(color: Colors.white),
-        ),
         ResponsiveWidget.isLargeScreen(context)
             ? _buildDesign()
             : SizedBox.shrink(),
@@ -90,10 +86,6 @@ class _IntroWidgetState extends State<IntroWidget> {
   Widget _buildMediumScreenContent(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Text(
-          'medium',
-          style: TextStyle(color: Colors.white),
-        ),
         _buildAppBar(context),
         Positioned(
           left: MediaQuery.of(context).size.width * 0.70,
@@ -136,10 +128,6 @@ class _IntroWidgetState extends State<IntroWidget> {
   Widget _buildSmallScreenContent(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Text(
-          'small',
-          style: TextStyle(color: Colors.white),
-        ),
         _buildAppBar(context),
         Positioned(
           left: MediaQuery.of(context).size.width * 0.70,

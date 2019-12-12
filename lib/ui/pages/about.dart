@@ -33,10 +33,9 @@ class _AboutWidgetState extends State<AboutWidget> {
   Widget _buildLargeScreenContent(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Text(
-          'large',
-          style: TextStyle(color: Colors.white),
-        ),
+//        ResponsiveWidget.isLargeScreen(context)
+//            ? _buildDesign()
+//            : SizedBox.shrink(),
         Positioned(
           right: MediaQuery.of(context).size.width * 0.16,
           top: MediaQuery.of(context).size.width * 0.10,
@@ -87,7 +86,7 @@ class _AboutWidgetState extends State<AboutWidget> {
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -95,10 +94,6 @@ class _AboutWidgetState extends State<AboutWidget> {
   Widget _buildMediumScreenContent(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Text(
-          'medium',
-          style: TextStyle(color: Colors.white),
-        ),
         Positioned(
           left: MediaQuery.of(context).size.width * 0.70,
           top: MediaQuery.of(context).size.width * 0.30,
@@ -141,54 +136,50 @@ class _AboutWidgetState extends State<AboutWidget> {
   }
 
   Widget _buildSmallScreenContent(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Text(
-          'small',
-          style: TextStyle(color: Colors.white),
-        ),
-        _buildAppBar(context),
-        Positioned(
-          left: MediaQuery.of(context).size.width * 0.70,
-          top: MediaQuery.of(context).size.width * 0.30,
-          child: _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
-        ),
-        Positioned(
-          left: MediaQuery.of(context).size.width * 0.65,
-          top: MediaQuery.of(context).size.width * 0.65,
-          child: _buildCircle(40, 40, 15.0, 4.0, Color(0xFF00bcd5)),
-        ),
-        Positioned(
-          right: MediaQuery.of(context).size.width * 0.30,
-          top: MediaQuery.of(context).size.width * 1.2,
-          child: _buildCircle(50, 50, 20.0, 4.0, Color(0xFFb2ebf2)),
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-            top: MediaQuery.of(context).size.height * 0.20,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.1),
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            left: MediaQuery.of(context).size.width * 0.70,
+            top: MediaQuery.of(context).size.width * 0.30,
+            child: _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  _buildAbout(
-                      fontSize: MediaQuery.of(context).size.width * 0.23),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                  _buildSummary(
-                    quarterTurns: 4,
-                    fontSize: MediaQuery.of(context).size.width * 0.035,
-                  ),
-                ],
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.10),
-              _buildCookies(),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.10),
-            ],
+          Positioned(
+            left: MediaQuery.of(context).size.width * 0.50,
+            top: MediaQuery.of(context).size.width * 0.65,
+            child: _buildCircle(40, 40, 15.0, 4.0, Color(0xFF00bcd5)),
           ),
-        )
-      ],
+          Positioned(
+            right: MediaQuery.of(context).size.width * 0.25,
+            top: MediaQuery.of(context).size.width * 1.4,
+            child: _buildCircle(50, 50, 20.0, 4.0, Color(0xFFb2ebf2)),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.height * 0.20,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    _buildAbout(
+                        fontSize: MediaQuery.of(context).size.width * 0.23),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                    _buildSummary(
+                      quarterTurns: 4,
+                      fontSize: MediaQuery.of(context).size.width * 0.035,
+                    ),
+                  ],
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.10),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -281,7 +272,7 @@ class _AboutWidgetState extends State<AboutWidget> {
   Widget _buildDesign() {
     return Center(
       child: Text(
-        'DES_\nIGN',
+        'AB_\nOUT',
         style: TextStyle(
           fontSize: MediaQuery.of(context).size.width * 0.27,
           color: Color(0xFF1e1e1e),

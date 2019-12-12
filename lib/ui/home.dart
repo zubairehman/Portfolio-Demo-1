@@ -40,9 +40,7 @@ class _HomePageState extends State<HomePage> {
                       ? Alignment.topRight
                       : Alignment.bottomLeft,
                 ),
-                ResponsiveWidget.isSmallScreen(context)
-                    ? SizedBox.shrink()
-                    : _buildSocialButtons()
+                ResponsiveWidget.isSmallScreen(context) ? SizedBox.shrink() : _buildSocialButtons()
               ],
             );
           },
@@ -89,6 +87,7 @@ class _HomePageState extends State<HomePage> {
               largeScreen: _buildLargeScreen(context),
               mediumScreen: _buildMediumScreen(context),
               smallScreen: _buildSmallScreen(context),
+
             ),
           )
         ],
@@ -134,16 +133,22 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildSmallScreen(BuildContext context) {
+    print('inside small layout home');
     return IntrinsicHeight(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           IntroWidget(),
           AboutWidget(),
           SkillsWidget(),
           HireWidget(),
-          _buildSocialButtons(axis: Axis.horizontal, quarterTurns: 4),
+          _buildSocialButtons(
+            axis: Axis.horizontal,
+            quarterTurns: 4,
+            alignment: Alignment.center,
+          ),
         ],
       ),
     );
@@ -153,10 +158,12 @@ class _HomePageState extends State<HomePage> {
   Widget _buildSocialButtons({
     int quarterTurns = 3,
     Axis axis = Axis.vertical,
+    alignment = Alignment.centerRight,
   }) {
     return Align(
-      alignment: Alignment.centerRight,
+      alignment: alignment,
       child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
         direction: axis,
         children: <Widget>[
           CustomCursor(

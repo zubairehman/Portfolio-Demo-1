@@ -12,6 +12,8 @@ class HireWidget extends StatefulWidget {
 }
 
 class _HireWidgetState extends State<HireWidget> {
+  bool _hovering = false;
+
   @override
   Widget build(BuildContext context) {
     return _buildBody(context);
@@ -34,10 +36,6 @@ class _HireWidgetState extends State<HireWidget> {
   Widget _buildLargeScreenContent(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Text(
-          'large',
-          style: TextStyle(color: Colors.white),
-        ),
         ResponsiveWidget.isLargeScreen(context)
             ? _buildHire()
             : SizedBox.shrink(),
@@ -89,10 +87,6 @@ class _HireWidgetState extends State<HireWidget> {
   Widget _buildMediumScreenContent(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Text(
-          'medium',
-          style: TextStyle(color: Colors.white),
-        ),
         Positioned(
           left: MediaQuery.of(context).size.width * 0.70,
           top: MediaQuery.of(context).size.width * 0.30,
@@ -137,51 +131,47 @@ class _HireWidgetState extends State<HireWidget> {
   }
 
   Widget _buildSmallScreenContent(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Text(
-          'small',
-          style: TextStyle(color: Colors.white),
-        ),
-        Positioned(
-          left: MediaQuery.of(context).size.width * 0.70,
-          top: MediaQuery.of(context).size.width * 0.30,
-          child: _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
-        ),
-        Positioned(
-          left: MediaQuery.of(context).size.width * 0.65,
-          top: MediaQuery.of(context).size.width * 0.65,
-          child: _buildCircle(40, 40, 15.0, 4.0, Color(0xFF00bcd5)),
-        ),
-        Positioned(
-          right: MediaQuery.of(context).size.width * 0.30,
-          top: MediaQuery.of(context).size.width * 1.2,
-          child: _buildCircle(50, 50, 20.0, 4.0, Color(0xFFb2ebf2)),
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-            top: MediaQuery.of(context).size.height * 0.20,
+    print('inside small layout hire');
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.1),
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            left: MediaQuery.of(context).size.width * 0.70,
+            top: MediaQuery.of(context).size.width * 0.30,
+            child: _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  _buildHireSummary(
-                      fontSize: MediaQuery.of(context).size.width * 0.23),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                  _buildSummary(
-                    quarterTurns: 4,
-                    fontSize: MediaQuery.of(context).size.width * 0.035,
-                  ),
-                ],
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.10),
-            ],
+          Positioned(
+            left: MediaQuery.of(context).size.width * 0.65,
+            top: MediaQuery.of(context).size.width * 0.65,
+            child: _buildCircle(40, 40, 15.0, 4.0, Color(0xFF00bcd5)),
           ),
-        )
-      ],
+          Positioned(
+            right: MediaQuery.of(context).size.width * 0.30,
+            top: MediaQuery.of(context).size.width * 1.2,
+            child: _buildCircle(50, 50, 20.0, 4.0, Color(0xFFb2ebf2)),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.height * 0.20,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    _buildHireSummary(
+                        fontSize: MediaQuery.of(context).size.width * 0.10),
+                  ],
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.10),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -214,35 +204,44 @@ class _HireWidgetState extends State<HireWidget> {
   }
 
   Widget _buildHireSummary({double fontSize}) {
-    return CustomCursor(
-      child: RichText(
-        text: TextSpan(
-          text:
-              "I'm always interested about cool stuff. Are you minding a project?\n",
-          recognizer: TapGestureRecognizer()
-            ..onTap = () => html.window
-                .open("https://www.linkedin.com/in/zubairehman/", "LinkedIn"),
-          style: TextStyle(
-            fontSize: fontSize,
-            color: Colors.white,
-            letterSpacing: 1.5,
-            height: 1.5,
-            fontFamily: 'ProductSans',
-            fontWeight: FontWeight.w700,
+    return StrikeThroughOnHover(
+      onEnterListener: (e) => _mouseEnter(true),
+      onExitListener: (e) => _mouseEnter(false),
+      child: CustomCursor(
+        child: RichText(
+          text: TextSpan(
+            text:
+                "I'm always interested about cool stuff. Are you minding a project?\n",
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                print('clicked');
+                html.window.open(
+                    "mailto:zubairehman.work@gmail.com", "Mail");
+              },
+            style: TextStyle(
+              fontSize: fontSize,
+              color: Colors.white,
+              letterSpacing: 1.5,
+              height: 1.5,
+              fontFamily: 'ProductSans',
+              fontWeight: FontWeight.w700,
+            ),
+            children: [
+              TextSpan(
+                text: "Let's talk.",
+                style: TextStyle(
+                  fontSize: fontSize,
+                  color: Color(0xFFff5353),
+                  height: 1.0,
+                  decoration: _hovering
+                      ? TextDecoration.none
+                      : TextDecoration.lineThrough,
+                  fontFamily: 'ProductSans',
+                  fontWeight: FontWeight.w700,
+                ),
+              )
+            ],
           ),
-          children: [
-            TextSpan(
-              text: "Let's talk.",
-              style: TextStyle(
-                fontSize: fontSize,
-                color: Color(0xFFff5353),
-                height: 1.0,
-                decoration: TextDecoration.lineThrough,
-                fontFamily: 'ProductSans',
-                fontWeight: FontWeight.w700,
-              ),
-            )
-          ],
         ),
       ),
     );
@@ -268,5 +267,13 @@ class _HireWidgetState extends State<HireWidget> {
         ),
       ),
     );
+  }
+
+  // general methods:-----------------------------------------------------------
+  void _mouseEnter(bool hover) {
+    print('mouse event: $hover');
+    setState(() {
+      _hovering = hover;
+    });
   }
 }
