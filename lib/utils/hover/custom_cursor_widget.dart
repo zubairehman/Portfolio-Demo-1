@@ -33,17 +33,18 @@ class CustomCursor extends MouseRegion {
 
   CustomCursor({Widget child, String cursorStyle = 'pointer'})
       : super(
-            onHover: (PointerHoverEvent evt) {
-              if (kIsWeb) {
-                appContainer.style.cursor = cursorStyle;
-              }
-            },
-            onExit: (PointerExitEvent evt) {
-              if (kIsWeb) {
-                appContainer.style.cursor = 'default';
-              }
-            },
-            child: child);
+          onHover: (PointerHoverEvent evt) {
+            if (kIsWeb) {
+              appContainer.style.cursor = cursorStyle;
+            }
+          },
+          onExit: (PointerExitEvent evt) {
+            if (kIsWeb) {
+              appContainer.style.cursor = 'default';
+            }
+          },
+          child: child,
+        );
 }
 
 class StrikeThroughOnHover extends StatefulWidget {

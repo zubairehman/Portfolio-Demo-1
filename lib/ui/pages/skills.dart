@@ -2,15 +2,16 @@ import 'package:flutter_web/material.dart';
 import 'package:portfolio/constants/assets.dart';
 import 'package:portfolio/constants/strings.dart';
 import 'package:portfolio/constants/text_styles.dart';
+import 'package:portfolio/models/education.dart';
 import 'package:portfolio/utils/screen/screen_utils.dart';
 import 'package:portfolio/widgets/responsive_widget.dart';
 
-class AboutWidget extends StatefulWidget {
+class SkillsWidget extends StatefulWidget {
   @override
-  _AboutWidgetState createState() => _AboutWidgetState();
+  _SkillsWidgetState createState() => _SkillsWidgetState();
 }
 
-class _AboutWidgetState extends State<AboutWidget> {
+class _SkillsWidgetState extends State<SkillsWidget> {
   @override
   Widget build(BuildContext context) {
     return _buildBody(context);
@@ -60,28 +61,25 @@ class _AboutWidgetState extends State<AboutWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Expanded(
-                  flex: 1,
+                  flex: 2,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 120.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        SizedBox(width: 30.0),
-                        _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
-                        SizedBox(width: 40.0),
-                        _buildAbout(
-                            fontSize: MediaQuery.of(context).size.width * 0.12),
-                      ],
-                    ),
+                    padding: EdgeInsets.only(
+                        bottom: 50.0,
+                        left: MediaQuery.of(context).size.width * 0.06),
+                    child: _buildSkillsAndEducation(context),
                   ),
                 ),
-//              SizedBox(width: MediaQuery.of(context).size.width * 0.30),
                 Expanded(
                   flex: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 50.0),
-                    child: _buildSummary(
-                        fontSize: MediaQuery.of(context).size.width * 0.015),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      _buildSkills(
+                          fontSize: MediaQuery.of(context).size.width * 0.12),
+                      _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
+                      SizedBox(width: 30.0),
+                    ],
                   ),
                 ),
               ],
@@ -120,12 +118,14 @@ class _AboutWidgetState extends State<AboutWidget> {
 //            left: MediaQuery.of(context).size.height * 0.10,
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.17),
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.17),
             child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  _buildAbout(fontSize: MediaQuery.of(context).size.width * 0.23),
+                  _buildSkills(
+                      fontSize: MediaQuery.of(context).size.width * 0.23),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   _buildSummary(
                     quarterTurns: 4,
@@ -173,7 +173,7 @@ class _AboutWidgetState extends State<AboutWidget> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  _buildAbout(
+                  _buildSkills(
                       fontSize: MediaQuery.of(context).size.width * 0.23),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   _buildSummary(
@@ -305,10 +305,10 @@ class _AboutWidgetState extends State<AboutWidget> {
     );
   }
 
-  Widget _buildAbout({double fontSize}) {
+  Widget _buildSkills({double fontSize}) {
     return RichText(
       text: TextSpan(
-        text: 'Ab_\nout',
+        text: 'Sk_\nills',
         style: TextStyle(
           fontSize: fontSize,
           color: Colors.white,
@@ -351,6 +351,160 @@ class _AboutWidgetState extends State<AboutWidget> {
             borderRadius: BorderRadius.circular(innerRadius),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildSkillsAndEducation(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Expanded(
+          flex: 2,
+          child: _buildEducation(),
+        ),
+        SizedBox(width: 40.0),
+        Expanded(
+          flex: 1,
+          child: _buildSkillsList(context),
+        ),
+      ],
+    );
+  }
+
+  final skills = [
+    'Java',
+    'Kotlin',
+    'Dart',
+    'Flutter',
+    'Android',
+    'iOS',
+    'Xamarin',
+    'Reactive Programming',
+    'Jenkins',
+    'Photoshop',
+    'JFrog Atrtifactory',
+    'Code Magic',
+  ];
+
+  Widget _buildSkillsList(BuildContext context) {
+    final List<Widget> widgets = skills
+        .map((skill) => Padding(
+              padding: EdgeInsets.only(right: 8.0),
+              child: _buildSkillChip(context, skill),
+            ))
+        .toList();
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        _buildSkillsContainerHeading(),
+        SizedBox(height: 8.0),
+        Wrap(children: widgets),
+//        _buildNavigationArrows(),
+      ],
+    );
+  }
+
+  Widget _buildSkillsContainerHeading() {
+    return Text(
+      Strings.skills_i_have,
+      style: TextStyles.sub_heading,
+    );
+  }
+
+  Widget _buildSkillChip(BuildContext context, String label) {
+    return Chip(
+      label: Text(
+        label,
+        style: TextStyles.chip.copyWith(
+          fontSize: ResponsiveWidget.isSmallScreen(context) ? 10.0 : 11.0,
+        ),
+      ),
+    );
+  }
+
+  final educationList = [
+    Education(
+      'Apr 2018',
+      'Present',
+      'Embrace-it Pakistan',
+      'Sr. Software Engineer',
+    ),
+    Education(
+      'Apr 2016',
+      'Apr 2018',
+      'TEO International',
+      'Sr. Software Engineer',
+    ),
+    Education(
+      'July 2014',
+      'March 2016',
+      'Citrusbits',
+      'Software Engineer',
+    ),
+  ];
+
+  Widget _buildEducation() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        _buildEducationContainerHeading(),
+        SizedBox(height: 8.0),
+        _buildEducationSummary(),
+        SizedBox(height: 8.0),
+        _buildEducationTimeline(),
+      ],
+    );
+  }
+
+  Widget _buildEducationContainerHeading() {
+    return Text(
+      Strings.experience,
+      style: TextStyles.sub_heading,
+    );
+  }
+
+  Widget _buildEducationSummary() {
+    return Text(
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      style: TextStyles.body,
+    );
+  }
+
+  Widget _buildEducationTimeline() {
+    final List<Widget> widgets = educationList
+        .map((education) => _buildEducationTile(education))
+        .toList();
+    return Column(
+      children: widgets,
+      mainAxisSize: MainAxisSize.min,
+    );
+  }
+
+  Widget _buildEducationTile(Education education) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Text(
+            '${education.post}',
+            style: TextStyles.company,
+          ),
+          Text(
+            '${education.organization}',
+            style: TextStyles.body.copyWith(
+              color: Colors.grey[300],
+            ),
+          ),
+          Text(
+            '${education.from}-${education.to}',
+            style: TextStyles.body,
+          ),
+        ],
       ),
     );
   }
