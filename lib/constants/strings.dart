@@ -68,8 +68,8 @@ class Strings {
 
   // hire:----------------------------------------------------------------------
   static const String hire = 'HIRE';
-  static const String always_interested = 'I\'m always interested about cool stuff. Are you minding a project?';
-  static const String lets_talk = '\nLet\'s talk.';
+  static const String always_interested = 'I\'m always interested about cool stuff. Are you minding a project?\n';
+  static const String lets_talk = 'Let\'s talk.';
 
 
   // menu items:----------------------------------------------------------------

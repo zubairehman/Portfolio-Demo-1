@@ -74,7 +74,7 @@ class _SkillsWidgetState extends State<SkillsWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Expanded(
-                  flex: 2,
+                  flex: 1,
                   child: Padding(
                     padding: EdgeInsets.only(
                         bottom: 50.0,

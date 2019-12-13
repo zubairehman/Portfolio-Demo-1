@@ -13,11 +13,15 @@ import 'package:portfolio/utils/screen/screen_utils.dart';
 import 'package:portfolio/widgets/responsive_widget.dart';
 
 class HomePage extends StatefulWidget {
+
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+
+  bool isSmallScreen = false;
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -35,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                       ? Alignment.topRight
                       : Alignment.bottomLeft,
                 ),
-                ResponsiveWidget.isSmallScreen(context)
+                isSmallScreen
                     ? SizedBox.shrink()
                     : _buildSocialButtons()
               ],
@@ -84,6 +88,36 @@ class _HomePageState extends State<HomePage> {
               largeScreen: _buildLargeScreen(context),
               mediumScreen: _buildMediumScreen(context),
               smallScreen: _buildSmallScreen(context),
+              onSmallScreen: () {
+                if(!isSmallScreen) {
+                  Future.delayed(Duration.zero, () {
+                    setState(() {
+                      print('insdie callback');
+                      isSmallScreen = true;
+                    });
+                  });
+                }
+              },
+              onMediumScreen: () {
+                if(isSmallScreen) {
+                  Future.delayed(Duration.zero, () {
+                    setState(() {
+                      print('insdie callback');
+                      isSmallScreen = false;
+                    });
+                  });
+                }
+              },
+              onLargeScreen: () {
+                if(isSmallScreen) {
+                  Future.delayed(Duration.zero, () {
+                    setState(() {
+                      print('insdie callback');
+                      isSmallScreen = false;
+                    });
+                  });
+                }
+              },
             ),
           )
         ],

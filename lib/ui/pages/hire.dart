@@ -245,12 +245,14 @@ class _HireWidgetState extends State<HireWidget> {
               },
             style: TextStyles.sub_heading.copyWith(
               fontSize: fontSize,
+              height: 1.5,
             ),
             children: [
               TextSpan(
                 text: Strings.lets_talk,
                 style: TextStyles.sub_heading.copyWith(
                   fontSize: fontSize,
+                  height: 1.5,
                   color: Color(0xFFff5353),
                   decoration: _hovering
                       ? TextDecoration.none

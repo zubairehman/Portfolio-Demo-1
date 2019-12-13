@@ -1,15 +1,28 @@
 import 'package:flutter_web/material.dart';
 
+// ignore: prefer_generic_function_type_aliases
+typedef void OnSmallScreen();
+// ignore: prefer_generic_function_type_aliases
+typedef void OnLargeScreen();
+// ignore: prefer_generic_function_type_aliases
+typedef void OnMediumScreen();
+
 class ResponsiveWidget extends StatelessWidget {
   final Widget largeScreen;
   final Widget mediumScreen;
   final Widget smallScreen;
+  final OnSmallScreen onSmallScreen;
+  final OnMediumScreen onMediumScreen;
+  final OnLargeScreen onLargeScreen;
 
   const ResponsiveWidget({
     Key key,
     @required this.largeScreen,
     this.mediumScreen,
     this.smallScreen,
+    this.onSmallScreen,
+    this.onMediumScreen,
+    this.onLargeScreen,
   }) : super(key: key);
 
 //  static bool isSmallScreen(BuildContext context) {
@@ -57,10 +70,13 @@ class ResponsiveWidget extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > 1125) {
+          onLargeScreen();
           return largeScreen;
         } else if (constraints.maxWidth < 1125 && constraints.maxWidth > 767) {
+          onMediumScreen();
           return mediumScreen ?? largeScreen;
         } else {
+          onSmallScreen();
           return smallScreen ?? largeScreen;
         }
       },
