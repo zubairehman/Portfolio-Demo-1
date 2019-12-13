@@ -3,7 +3,9 @@ import 'dart:html' as html;
 import 'package:flutter_web/gestures.dart';
 import 'package:flutter_web/material.dart';
 import 'package:portfolio/constants/strings.dart';
+import 'package:portfolio/constants/text_styles.dart';
 import 'package:portfolio/utils/hover/custom_cursor_widget.dart';
+import 'package:portfolio/widgets/circle_widget.dart';
 import 'package:portfolio/widgets/responsive_widget.dart';
 
 class HireWidget extends StatefulWidget {
@@ -42,17 +44,35 @@ class _HireWidgetState extends State<HireWidget> {
         Positioned(
           right: MediaQuery.of(context).size.width * 0.16,
           top: MediaQuery.of(context).size.width * 0.10,
-          child: _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
+          child: CircleWidget(
+            width: 60,
+            height: 60,
+            outerRadius: 25.0,
+            innerRadius: 8.0,
+            circleColor: Color(0xFF0098a6),
+          ),
         ),
         Positioned(
           left: MediaQuery.of(context).size.width * 0.29,
           top: MediaQuery.of(context).size.width * 0.15,
-          child: _buildCircle(40, 40, 15.0, 4.0, Color(0xFF00bcd5)),
+          child: CircleWidget(
+            width: 40,
+            height: 40,
+            outerRadius: 15.0,
+            innerRadius: 4.0,
+            circleColor: Color(0xFF00bcd5),
+          ),
         ),
         Positioned(
           left: MediaQuery.of(context).size.width * 0.45,
           bottom: MediaQuery.of(context).size.width * 0.12,
-          child: _buildCircle(50, 50, 20.0, 4.0, Color(0xFFb2ebf2)),
+          child: CircleWidget(
+            width: 50,
+            height: 50,
+            outerRadius: 20.0,
+            innerRadius: 4.0,
+            circleColor: Color(0xFFb2ebf2),
+          ),
         ),
         Center(
           child: SizedBox(
@@ -68,7 +88,13 @@ class _HireWidgetState extends State<HireWidget> {
                     child: Wrap(
                       children: <Widget>[
                         SizedBox(width: 30.0),
-                        _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
+                        CircleWidget(
+                          width: 60,
+                          height: 60,
+                          outerRadius: 25.0,
+                          innerRadius: 8.0,
+                          circleColor: Color(0xFF0098a6),
+                        ),
                         SizedBox(width: 40.0),
                         _buildHireSummary(
                             fontSize: MediaQuery.of(context).size.width * 0.06),
@@ -90,17 +116,35 @@ class _HireWidgetState extends State<HireWidget> {
         Positioned(
           left: MediaQuery.of(context).size.width * 0.70,
           top: MediaQuery.of(context).size.width * 0.30,
-          child: _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
+          child: CircleWidget(
+            width: 60,
+            height: 60,
+            outerRadius: 25.0,
+            innerRadius: 8.0,
+            circleColor: Color(0xFF0098a6),
+          ),
         ),
         Positioned(
           left: MediaQuery.of(context).size.width * 0.65,
           top: MediaQuery.of(context).size.width * 0.65,
-          child: _buildCircle(40, 40, 15.0, 4.0, Color(0xFF00bcd5)),
+          child: CircleWidget(
+            width: 40,
+            height: 40,
+            outerRadius: 15.0,
+            innerRadius: 4.0,
+            circleColor: Color(0xFF00bcd5),
+          ),
         ),
         Positioned(
           right: MediaQuery.of(context).size.width * 0.30,
           top: MediaQuery.of(context).size.width * 1.2,
-          child: _buildCircle(50, 50, 20.0, 4.0, Color(0xFFb2ebf2)),
+          child: CircleWidget(
+            width: 50,
+            height: 50,
+            outerRadius: 20.0,
+            innerRadius: 4.0,
+            circleColor: Color(0xFFb2ebf2),
+          ),
         ),
         Padding(
           padding: EdgeInsets.only(
@@ -116,11 +160,6 @@ class _HireWidgetState extends State<HireWidget> {
                 children: <Widget>[
                   _buildHireSummary(
                       fontSize: MediaQuery.of(context).size.width * 0.10),
-//                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-//                  _buildSummary(
-//                    quarterTurns: 4,
-//                    fontSize: MediaQuery.of(context).size.width * 0.025,
-//                  ),
                 ],
               ),
             ),
@@ -131,7 +170,6 @@ class _HireWidgetState extends State<HireWidget> {
   }
 
   Widget _buildSmallScreenContent(BuildContext context) {
-    print('inside small layout hire');
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: MediaQuery.of(context).size.width * 0.1),
@@ -140,17 +178,35 @@ class _HireWidgetState extends State<HireWidget> {
           Positioned(
             left: MediaQuery.of(context).size.width * 0.70,
             top: MediaQuery.of(context).size.width * 0.30,
-            child: _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
+            child: CircleWidget(
+              width: 60,
+              height: 60,
+              outerRadius: 25.0,
+              innerRadius: 8.0,
+              circleColor: Color(0xFF0098a6),
+            ),
           ),
           Positioned(
             left: MediaQuery.of(context).size.width * 0.65,
             top: MediaQuery.of(context).size.width * 0.65,
-            child: _buildCircle(40, 40, 15.0, 4.0, Color(0xFF00bcd5)),
+            child: CircleWidget(
+              width: 40,
+              height: 40,
+              outerRadius: 15.0,
+              innerRadius: 4.0,
+              circleColor: Color(0xFF00bcd5),
+            ),
           ),
           Positioned(
             right: MediaQuery.of(context).size.width * 0.30,
             top: MediaQuery.of(context).size.width * 1.2,
-            child: _buildCircle(50, 50, 20.0, 4.0, Color(0xFFb2ebf2)),
+            child: CircleWidget(
+              width: 0,
+              height: 50,
+              outerRadius: 20.0,
+              innerRadius: 4.0,
+              circleColor: Color(0xFFb2ebf2),
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(
@@ -179,26 +235,8 @@ class _HireWidgetState extends State<HireWidget> {
   Widget _buildHire() {
     return Center(
       child: Text(
-        'HIRE',
-        style: TextStyle(
-          fontSize: MediaQuery.of(context).size.width * 0.27,
-          color: Color(0xFF1e1e1e),
-          fontFamily: 'NexaBold',
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSummary({int quarterTurns = 3, double fontSize}) {
-    return Text(
-      Strings.summary,
-      textAlign: TextAlign.justify,
-      style: TextStyle(
-        color: Colors.grey[400],
-        fontFamily: 'Inconsolata',
-        fontSize: fontSize,
-        height: 1.5,
-        letterSpacing: 1.5,
+        Strings.hire,
+        style: TextStyles.heading,
       ),
     );
   }
@@ -210,59 +248,26 @@ class _HireWidgetState extends State<HireWidget> {
       child: CustomCursor(
         child: RichText(
           text: TextSpan(
-            text:
-                "I'm always interested about cool stuff. Are you minding a project?\n",
+            text: Strings.always_interested,
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                print('clicked');
-                html.window.open(
-                    "mailto:zubairehman.work@gmail.com", "Mail");
+                html.window.open(Strings.menu_mail_link, Strings.menu_mail);
               },
-            style: TextStyle(
+            style: TextStyles.sub_heading.copyWith(
               fontSize: fontSize,
-              color: Colors.white,
-              letterSpacing: 1.5,
-              height: 1.5,
-              fontFamily: 'ProductSans',
-              fontWeight: FontWeight.w700,
             ),
             children: [
               TextSpan(
-                text: "Let's talk.",
-                style: TextStyle(
+                text: Strings.lets_talk,
+                style: TextStyles.sub_heading.copyWith(
                   fontSize: fontSize,
                   color: Color(0xFFff5353),
-                  height: 1.0,
                   decoration: _hovering
                       ? TextDecoration.none
                       : TextDecoration.lineThrough,
-                  fontFamily: 'ProductSans',
-                  fontWeight: FontWeight.w700,
                 ),
               )
             ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCircle(double width, double height, double outerRadius,
-      double innerRadius, Color color) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(outerRadius),
-      ),
-      child: Center(
-        child: Container(
-          height: height * 0.45,
-          width: width * 0.45,
-          decoration: BoxDecoration(
-            color: Color(0XFF1a1a1a),
-            borderRadius: BorderRadius.circular(innerRadius),
           ),
         ),
       ),

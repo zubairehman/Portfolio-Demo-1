@@ -3,6 +3,7 @@ import 'package:portfolio/constants/assets.dart';
 import 'package:portfolio/constants/strings.dart';
 import 'package:portfolio/constants/text_styles.dart';
 import 'package:portfolio/utils/screen/screen_utils.dart';
+import 'package:portfolio/widgets/circle_widget.dart';
 import 'package:portfolio/widgets/responsive_widget.dart';
 
 class IntroWidget extends StatefulWidget {
@@ -40,17 +41,35 @@ class _IntroWidgetState extends State<IntroWidget> {
         Positioned(
           right: MediaQuery.of(context).size.width * 0.16,
           top: MediaQuery.of(context).size.width * 0.10,
-          child: _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
+          child: CircleWidget(
+            width: 60,
+            height: 60,
+            outerRadius: 25.0,
+            innerRadius: 8.0,
+            circleColor: Color(0xFF0098a6),
+          ),
         ),
         Positioned(
           left: MediaQuery.of(context).size.width * 0.29,
           top: MediaQuery.of(context).size.width * 0.15,
-          child: _buildCircle(40, 40, 15.0, 4.0, Color(0xFF00bcd5)),
+          child: CircleWidget(
+            width: 40,
+            height: 40,
+            outerRadius: 15.0,
+            innerRadius: 4.0,
+            circleColor: Color(0xFF00bcd5),
+          ),
         ),
         Positioned(
           left: MediaQuery.of(context).size.width * 0.37,
           bottom: MediaQuery.of(context).size.width * 0.10,
-          child: _buildCircle(50, 50, 20.0, 4.0, Color(0xFFb2ebf2)),
+          child: CircleWidget(
+            width: 50,
+            height: 50,
+            outerRadius: 20.0,
+            innerRadius: 4.0,
+            circleColor: Color(0xFFb2ebf2),
+          ),
         ),
         Center(
           child: Row(
@@ -63,7 +82,13 @@ class _IntroWidgetState extends State<IntroWidget> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
                     SizedBox(width: 30.0),
-                    _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
+                    CircleWidget(
+                      width: 60,
+                      height: 60,
+                      outerRadius: 25.0,
+                      innerRadius: 8.0,
+                      circleColor: Color(0xFF0098a6),
+                    ),
                     SizedBox(width: 40.0),
                     _buildAboutMe(
                         fontSize: MediaQuery.of(context).size.width * 0.015),
@@ -90,17 +115,35 @@ class _IntroWidgetState extends State<IntroWidget> {
         Positioned(
           left: MediaQuery.of(context).size.width * 0.70,
           top: MediaQuery.of(context).size.width * 0.30,
-          child: _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
+          child: CircleWidget(
+            width: 60,
+            height: 60,
+            outerRadius: 25.0,
+            innerRadius: 8.0,
+            circleColor: Color(0xFF0098a6),
+          ),
         ),
         Positioned(
           left: MediaQuery.of(context).size.width * 0.65,
           top: MediaQuery.of(context).size.width * 0.65,
-          child: _buildCircle(40, 40, 15.0, 4.0, Color(0xFF00bcd5)),
+          child: CircleWidget(
+            width: 40,
+            height: 40,
+            outerRadius: 15.0,
+            innerRadius: 4.0,
+            circleColor: Color(0xFF00bcd5),
+          ),
         ),
         Positioned(
           right: MediaQuery.of(context).size.width * 0.30,
           top: MediaQuery.of(context).size.width * 1.2,
-          child: _buildCircle(50, 50, 20.0, 4.0, Color(0xFFb2ebf2)),
+          child: CircleWidget(
+            width: 50,
+            height: 50,
+            outerRadius: 20.0,
+            innerRadius: 4.0,
+            circleColor: Color(0xFFb2ebf2),
+          ),
         ),
         Padding(
           padding: EdgeInsets.only(
@@ -132,17 +175,35 @@ class _IntroWidgetState extends State<IntroWidget> {
         Positioned(
           left: MediaQuery.of(context).size.width * 0.70,
           top: MediaQuery.of(context).size.width * 0.30,
-          child: _buildCircle(60, 60, 25.0, 8.0, Color(0xFF0098a6)),
+          child: CircleWidget(
+            width: 60,
+            height: 60,
+            outerRadius: 25.0,
+            innerRadius: 8.0,
+            circleColor: Color(0xFF0098a6),
+          ),
         ),
         Positioned(
           left: MediaQuery.of(context).size.width * 0.65,
           top: MediaQuery.of(context).size.width * 0.65,
-          child: _buildCircle(40, 40, 15.0, 4.0, Color(0xFF00bcd5)),
+          child: CircleWidget(
+            width: 40,
+            height: 40,
+            outerRadius: 15.0,
+            innerRadius: 4.0,
+            circleColor: Color(0xFF00bcd5),
+          ),
         ),
         Positioned(
           right: MediaQuery.of(context).size.width * 0.30,
           top: MediaQuery.of(context).size.width * 1.2,
-          child: _buildCircle(50, 50, 20.0, 4.0, Color(0xFFb2ebf2)),
+          child: CircleWidget(
+            width: 50,
+            height: 50,
+            outerRadius: 20.0,
+            innerRadius: 4.0,
+            circleColor: Color(0xFFb2ebf2),
+          ),
         ),
         Padding(
           padding: EdgeInsets.only(
@@ -210,10 +271,7 @@ class _IntroWidgetState extends State<IntroWidget> {
   Widget _buildPortfolio() {
     return Text(
       Strings.portfolio,
-      style: TextStyles.logo.copyWith(
-        fontFamily: 'AquateScript',
-        color: Colors.white,
-      ),
+      style: TextStyles.logo,
     );
   }
 
@@ -239,18 +297,18 @@ class _IntroWidgetState extends State<IntroWidget> {
             children: <TextSpan>[
               TextSpan(
                 text: Strings.this_web,
-                style: TextStyles.logo.copyWith(
-                    fontFamily: 'Inconsolata',
-                    color: Colors.grey,
-                    fontSize: 12.0),
+                style: TextStyles.body.copyWith(
+                  color: Colors.grey,
+                  fontSize: 12.0,
+                ),
               ),
               TextSpan(
                 text: Strings.cookies,
-                style: TextStyles.logo.copyWith(
-                    fontFamily: 'Inconsolata',
-                    color: Colors.white,
-                    decoration: TextDecoration.lineThrough,
-                    fontSize: 12.0),
+                style: TextStyles.body.copyWith(
+                  color: Colors.white,
+                  decoration: TextDecoration.lineThrough,
+                  fontSize: 12.0,
+                ),
               ),
             ],
           ),
@@ -262,11 +320,9 @@ class _IntroWidgetState extends State<IntroWidget> {
   Widget _buildDesign() {
     return Center(
       child: Text(
-        'DES_\nIGN',
-        style: TextStyle(
+        Strings.design,
+        style: TextStyles.heading.copyWith(
           fontSize: MediaQuery.of(context).size.width * 0.27,
-          color: Color(0xFF1e1e1e),
-          fontFamily: 'NexaBold',
         ),
       ),
     );
@@ -276,13 +332,9 @@ class _IntroWidgetState extends State<IntroWidget> {
     return RotatedBox(
       quarterTurns: quarterTurns,
       child: Text(
-        'Mobile App Developer\nbased in Islamabad\nPakistan.',
-        style: TextStyle(
-          color: Colors.grey[400],
-          fontFamily: 'Inconsolata',
+        Strings.mobile_dev,
+        style: TextStyles.body.copyWith(
           fontSize: fontSize,
-          height: 1.5,
-          letterSpacing: 1.5,
         ),
       ),
     );
@@ -291,59 +343,23 @@ class _IntroWidgetState extends State<IntroWidget> {
   Widget _buildHello({double fontSize}) {
     return RichText(
       text: TextSpan(
-        text: 'Hello',
-        style: TextStyle(
-          fontSize: fontSize,
-          color: Colors.white,
-          letterSpacing: 1.5,
-          height: 1.0,
-          fontFamily: 'ProductSans',
-          fontWeight: FontWeight.w700,
-        ),
+        text: Strings.hello,
+        style: TextStyles.sub_heading.copyWith(fontSize: fontSize),
         children: <TextSpan>[
           TextSpan(
             text: '.',
-            style: TextStyle(
+            style: TextStyles.sub_heading.copyWith(
               fontSize: fontSize,
               color: Color(0xFFff5353),
-              height: 1.0,
-              fontFamily: 'ProductSans',
-              fontWeight: FontWeight.w700,
             ),
           ),
           TextSpan(
-            text: '\nI am\nZubair',
-            style: TextStyle(
+            text: Strings.i_am_zubair,
+            style: TextStyles.sub_heading.copyWith(
               fontSize: fontSize,
-              color: Colors.white,
-              height: 1.0,
-              fontFamily: 'ProductSans',
-              fontWeight: FontWeight.w700,
             ),
           )
         ],
-      ),
-    );
-  }
-
-  Widget _buildCircle(double width, double height, double outerRadius,
-      double innerRadius, Color color) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(outerRadius),
-      ),
-      child: Center(
-        child: Container(
-          height: height * 0.45,
-          width: width * 0.45,
-          decoration: BoxDecoration(
-            color: Color(0XFF1a1a1a),
-            borderRadius: BorderRadius.circular(innerRadius),
-          ),
-        ),
       ),
     );
   }
