@@ -115,8 +115,8 @@ class _AboutWidgetState extends State<AboutWidget> {
     return Stack(
       children: <Widget>[
         Positioned(
-          left: MediaQuery.of(context).size.width * 0.70,
-          top: MediaQuery.of(context).size.width * 0.30,
+          left: MediaQuery.of(context).size.width * 0.16,
+          top: MediaQuery.of(context).size.width * 0.20,
           child: CircleWidget(
             width: 60,
             height: 60,
@@ -126,7 +126,7 @@ class _AboutWidgetState extends State<AboutWidget> {
           ),
         ),
         Positioned(
-          left: MediaQuery.of(context).size.width * 0.65,
+          left: MediaQuery.of(context).size.width * 0.25,
           top: MediaQuery.of(context).size.width * 0.65,
           child: CircleWidget(
             width: 40,
@@ -134,17 +134,6 @@ class _AboutWidgetState extends State<AboutWidget> {
             outerRadius: 15.0,
             innerRadius: 4.0,
             circleColor: Color(0xFF00bcd5),
-          ),
-        ),
-        Positioned(
-          right: MediaQuery.of(context).size.width * 0.30,
-          top: MediaQuery.of(context).size.width * 1.2,
-          child: CircleWidget(
-            width: 50,
-            height: 50,
-            outerRadius: 20.0,
-            innerRadius: 4.0,
-            circleColor: Color(0xFFb2ebf2),
           ),
         ),
         Padding(
@@ -164,7 +153,7 @@ class _AboutWidgetState extends State<AboutWidget> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   _buildSummary(
                     quarterTurns: 4,
-                    fontSize: MediaQuery.of(context).size.width * 0.025,
+                    fontSize: MediaQuery.of(context).size.width * 0.022,
                   ),
                 ],
               ),

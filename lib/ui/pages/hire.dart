@@ -53,17 +53,6 @@ class _HireWidgetState extends State<HireWidget> {
           ),
         ),
         Positioned(
-          left: MediaQuery.of(context).size.width * 0.29,
-          top: MediaQuery.of(context).size.width * 0.15,
-          child: CircleWidget(
-            width: 40,
-            height: 40,
-            outerRadius: 15.0,
-            innerRadius: 4.0,
-            circleColor: Color(0xFF00bcd5),
-          ),
-        ),
-        Positioned(
           left: MediaQuery.of(context).size.width * 0.45,
           bottom: MediaQuery.of(context).size.width * 0.12,
           child: CircleWidget(
@@ -160,6 +149,7 @@ class _HireWidgetState extends State<HireWidget> {
                 children: <Widget>[
                   _buildHireSummary(
                       fontSize: MediaQuery.of(context).size.width * 0.10),
+//                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                 ],
               ),
             ),

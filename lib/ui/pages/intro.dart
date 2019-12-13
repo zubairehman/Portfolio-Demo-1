@@ -158,7 +158,7 @@ class _IntroWidgetState extends State<IntroWidget> {
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                 _buildAboutMe(
                   quarterTurns: 4,
-                  fontSize: MediaQuery.of(context).size.width * 0.035,
+                  fontSize: MediaQuery.of(context).size.width * 0.030,
                 ),
               ],
             ),

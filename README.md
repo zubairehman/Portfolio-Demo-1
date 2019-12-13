@@ -22,7 +22,7 @@ Follow the links below to learn more about how to create and deploy web applicat
 Download or clone this repo by using the link below:
 
 ```
-https://github.com/zubairehman/Portfolio-Demo.git
+https://github.com/zubairehman/Portfolio-Demo-1.git
 ```
 
 **Step 2:**

@@ -114,16 +114,19 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildMediumScreen(BuildContext context) {
-    return IntrinsicHeight(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          IntroWidget(),
-          AboutWidget(),
-          SkillsWidget(),
-          HireWidget(),
-        ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 50.0),
+      child: IntrinsicHeight(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            IntroWidget(),
+            AboutWidget(),
+            SkillsWidget(),
+            HireWidget(),
+          ],
+        ),
       ),
     );
   }
@@ -161,16 +164,11 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: WrapCrossAlignment.center,
         direction: axis,
         children: <Widget>[
-          _buildMenuItem(
-              quarterTurns, Strings.menu_medium_link, Strings.menu_medium),
-          _buildMenuItem(
-              quarterTurns, Strings.menu_github_link, Strings.menu_github),
-          _buildMenuItem(quarterTurns, Strings.menu_linked_in_link,
-              Strings.menu_linked_in),
-          _buildMenuItem(
-              quarterTurns, Strings.menu_twitter_link, Strings.menu_twitter),
-          _buildMenuItem(
-              quarterTurns, Strings.menu_facebook_link, Strings.menu_facebook),
+          _buildMenuItem(quarterTurns, Strings.menu_medium_link, Strings.menu_medium),
+          _buildMenuItem(quarterTurns, Strings.menu_github_link, Strings.menu_github),
+          _buildMenuItem(quarterTurns, Strings.menu_linked_in_link, Strings.menu_linked_in),
+          _buildMenuItem(quarterTurns, Strings.menu_twitter_link, Strings.menu_twitter),
+          _buildMenuItem(quarterTurns, Strings.menu_facebook_link, Strings.menu_facebook),
         ],
       ),
     );

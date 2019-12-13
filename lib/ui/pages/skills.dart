@@ -127,7 +127,7 @@ class _SkillsWidgetState extends State<SkillsWidget> {
     return Stack(
       children: <Widget>[
         Positioned(
-          left: MediaQuery.of(context).size.width * 0.70,
+          left: MediaQuery.of(context).size.width * 0.40,
           top: MediaQuery.of(context).size.width * 0.30,
           child: CircleWidget(
             width: 60,
@@ -174,9 +174,9 @@ class _SkillsWidgetState extends State<SkillsWidget> {
                   _buildSkills(
                       fontSize: MediaQuery.of(context).size.width * 0.23),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                  _buildEducation(),
+                  _buildSkillsList(context, headingFontSize: MediaQuery.of(context).size.width * 0.022),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                  _buildSkillsList(context),
+                  _buildEducation(headingFontSize: MediaQuery.of(context).size.width * 0.022),
                 ],
               ),
             ),
